@@ -1,0 +1,179 @@
+﻿@model User
+@{
+}
+    <link rel="icon" href="./images/favicon_donut.ico" type="image/png">
+    <link rel="stylesheet" type="text/css" href="~/css/registration_page_style.css">
+    <link rel="stylesheet" type="text/css" href="~/css/main_page_style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+<div class="byxnxM">
+    <div class="hIrZrE">
+        <div class="iyocDW">
+            <div class="jJXygk">
+                <div class="plnLv">
+                    <div class="csAXhw">
+                        <svg width="18px" height="18px" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+                            <path fill="#000000"
+                                  d="M14.25 44V25.6q-2.6-.55-4.425-2.625Q8 20.9 8 18V4h3v14h3.25V4h3v14h3.25V4h3v14q0 2.9-1.825 4.975Q19.85 25.05 17.25 25.6V44ZM35 44V28h-5.75V12.75q0-3.95 2.4-6.35Q34.05 4 38 4v40Z">
+                            </path>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+            <div height="100%" class="iaWulL">
+                <div height="100%" class="kCUIAl">
+                    <a>
+                        <div class="TTLcH">
+                            <div class="lcNqgn">
+                                <div class="cBjxhF">
+                                    <div class="hfcCSo">
+                                        <img src="~/images/logo.png" class="cYSgHb" height="120px"
+                                             width="auto">
+                                        <h1 class="fxcbGf">
+                                            Daily Food
+                                        </h1>
+                                    </div>
+                                </div>
+                                <div class="bKQARb">
+                                    <img src="~/images/logo.png" class="cYSgHb" height="120px" width="auto">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="hmFCJm">
+                            <div class="cBjxhF">
+                                <div class="hfcCSo">
+                                    <img src="~/images/logo.png" class="cYSgHb" height="120px" width="auto">
+                                </div>
+                            </div>
+                            <div class="bKQARb">
+                                <img src="~/images/logo.png" class="cYSgHb" height="120px" width="auto">
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div>
+        </div>
+        <div>
+            <div>
+                <style>
+                    #annoucement-1 .container-background {
+                        background: #f2f2f2;
+                    }
+
+                    #annoucement-1 .header-color {
+                        color: #000000;
+                    }
+
+                    #annoucement-1 .sub-color {
+                        color: #000000;
+                    }
+
+                    #annoucement-1 .border-color {
+                        border-color: rgba(255, 255, 255, 0.5);
+                    }
+                </style>
+                <style>
+                    .container {
+                        width: 100%;
+                    }
+
+                    .wrapper {
+                        max-width: 1200px;
+                        margin: 0 auto;
+                        display: flex;
+                        display: -ms-flexbox;
+                        flex-direction: column;
+                    }
+
+                    .box {
+                        flex: 1 0 0%;
+                        -ms-flex: 1 0 0%;
+                        text-align: center;
+                        padding: 20px 0;
+                        margin: 0 20px;
+                    }
+
+                    .box:not(:last-child) {
+                        border: 0 solid transparent;
+                        border-bottom-width: 1px;
+                    }
+
+                    .header {
+                        font-size: 1rem;
+                        line-height: 1.2rem;
+                    }
+
+                    .sub {
+                        font-size: 1rem;
+                        margin: 0;
+                    }
+
+                    @@media (min-width: 1024px) {
+                        .wrapper {
+                            flex-direction: row;
+                        }
+
+                        .box {
+                            padding: 0 20px;
+                            margin: 20px 0;
+                        }
+
+                        .box:not(:last-child) {
+                            border-bottom-width: 0;
+                            border-right-width: 1px;
+                        }
+                    }
+                </style>
+            </div>
+        </div>
+        <div class="registration" style="height: 100%; padding: 8% 3%">
+            <div class="sc-1acu81b-0 sc-8slcnd-0 cMUQOQ">
+                <h2 class="sc-1acu81b-0 sc-14ntqp3-0 sc-14ntqp3-1 sc-14ntqp3-3 ckxKDR">
+                    Вхід у систему
+                </h2>
+            </div>
+            <div class="container">
+                            <div class="sc-1acu81b-0 sc-1pa0b2f-0 dEwaHC __card login_block">
+                                <form asp-controller="Authorization" asp-action="Login" method="post">
+                                    <div class="sc-1acu81b-0 p4bqbh-1 itozEE">
+                                        <div class="sc-1acu81b-0 sc-8slcnd-0 sc-12uj57n-3 gLoLRE">
+                                            <div class="sc-1acu81b-0 sc-8slcnd-0 sc-12uj57n-4 jUcdXt">
+                                                <input asp-for="login" id="email" class="sc-12uj57n-0 gFHwXw" type="login" name="login"
+                                                    value=""><label for="login"
+                                                    class="sc-1acu81b-0 sc-14ntqp3-0 sc-14ntqp3-1 sc-14ntqp3-6 sc-12uj57n-1 jndxzP">Логін
+                                                    (ел. пошта)</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="sc-1acu81b-0 p4bqbh-1 itozEE">
+                                        <div class="sc-1acu81b-0 sc-8slcnd-0 sc-12uj57n-3 gLoLRE">
+                                            <div class="sc-1acu81b-0 sc-8slcnd-0 sc-12uj57n-4 jUcdXt">
+                                                <input asp-for="password" id="password" class="sc-12uj57n-0 gFHwXw" type="password"
+                                                    name="password" value=""><label for="password"
+                                                    class="sc-1acu81b-0 sc-14ntqp3-0 sc-14ntqp3-1 sc-14ntqp3-6 sc-12uj57n-1 jndxzP">Пароль</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <span asp-validation-for="login" class="error_message"></span>
+                                    <div class="sc-1acu81b-0 sc-8slcnd-0 aheg1h-1 bhLcWC"><button type="submit"
+                                class="sc-1ljqqky-0 ixpzHc aheg1h-0 hYVrEX login_btn" width="auto">
+                                            <h4
+                                                class="sc-1acu81b-0 sc-14ntqp3-0 sc-14ntqp3-1 sc-14ntqp3-6 sc-1ljqqky-1 cPHxZb">
+                                                Увійти</h4>
+                                        </button>
+                                    </div>
+                                </form>
+                                <form asp-controller="Registration" asp-action="Index" method="get">
+                                    <button type="submit" class="registrate_btn">Зареєструватись</button>
+                                </form>
+                            </div>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <img src="~/images/logo.png">
+        <p>© 2023 ™ DailyFood. Всі права захищені.</p>
+    </footer>
+</div>
