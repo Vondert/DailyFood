@@ -1,7 +1,7 @@
 ﻿@model MainPageModel
 
 @{
-    ViewData["Title"] = "Список категорий и блюд";
+    ViewData["Title"] = "Daily Food";
 }
 
     <link rel="stylesheet" type="text/css" href="~/css/main_page_style.css">
@@ -48,6 +48,15 @@
               </div>
             </a>
             <div class="dnNumD">
+                        <div class="sc-1acu81b-0 sc-8slcnd-0 hfcCSo">
+                            <button class="sc-1ljqqky-0 likqgH sc-13chy03-4 cycFuL" width="auto" type="button">
+                                <h4 class="sc-1acu81b-0 sc-14ntqp3-0 sc-14ntqp3-1 sc-14ntqp3-6 sc-1ljqqky-1 cPHxZb">
+                                    <h4 class="sc-1acu81b-0 sc-14ntqp3-0 sc-14ntqp3-1 sc-14ntqp3-6 sc-13chy03-5 fPTkUX" id="btn-signIn">
+                                        Увійти
+                                    </h4>
+                                </h4>
+                            </button>
+                        </div>
               <div class="TTLcH openbasket">
                 <div class="bTClhV">
                   <div>
@@ -373,17 +382,23 @@
                                     <h4 class="hARBZy">
                                       Lorem ipsum dolor, sit amet consectetur adipisicing elit. Perferendis aspernatur, doloremque debitis modi sunt accusantium laborum! Ipsum, harum vero, distinctio dolorem quasi corporis esse maiores doloribus, voluptate explicabo maxime animi.
                                     </h4>
-                                  </div>
+                                </div>
     
                               <h4 class="fCDzCG prod-price">
-                                @dish.price &nbsp;&#8372;
-                              </h4>  
+                                @dish.price&#8372;
+                              </h4>
+                               <h4 class="fCDzCG prod-bonuses">
+                              @(dish.price * category.bonusCoefficient)
+                              </h4>
                             </div>
                             <div class="fKsDUG">
                               <div class="efWQTh">
                                 <h4 class="fCDzCG prod-price">
-                                    @dish.price &nbsp;&#8372;
+                                    @dish.price&#8372;
                                 </h4>
+                               <h4 class="fCDzCG prod-bonuses">
+                                   @(dish.price * category.bonusCoefficient)
+                               </h4>
                               </div>
                             </div>
                             @if (@Model.userId.HasValue)
@@ -448,23 +463,48 @@
             </div>
             <div class="sc-1acu81b-0 sc-8slcnd-0 hz6r0v-5 sc-1dohxd1-2 frXFPp">
               <div class="sc-1acu81b-0 sc-1pa0b2f-0 hz6r0v-7 sc-1dohxd1-3 gJqMfQ __card">
+                <!--delevery info-->
+                <div class="inputsBox">
+                                <div class="form-group">
+                <label for="delivery-type">Оберіть тип замовлення</label>
+                </div>
+                                <div class="form-group radio-container" id="delivery-type">
+                                    <input type="radio" id="delivery" name="option" value="delivery" class="input-order-type" checked>
+                                    <label for="delivery"><span>Доставка</span></label>
+
+                                    <input type="radio" id="takeaway" name="option" value="takeaway" class="input-order-type">
+                                    <label for="takeaway"><span>На виніс</span></label>
+                                </div>
+                    <div class="form-group">
+                        <label for="address">Адреса</label>
+                        <input class="userInput" type="text" id="address" placeholder="Введіть вашу адресу" readonly>
+                    </div>
+                                <hr class="nyyyo6-0 cnYwPc">
+
+                                <div class="sc-1acu81b-0 gQLULL delivery-price-block">
+                                    <div class="sc-1acu81b-0 sc-8slcnd-0 gl7882-1 gcvKCT">
+                                        <p class="sc-1acu81b-0 sc-14ntqp3-0 sc-14ntqp3-7 gl7882-2 bFUzum">Вартісь доставки</p>
+                                        <p class="sc-1acu81b-0 sc-14ntqp3-0 sc-14ntqp3-7 gl7882-2 dQxHYP delivery-price">40.00&#8372;</p>
+                                    </div>
+                                </div>
+                </div>
+                <!--delevery info end-->
                 <div class="sc-1acu81b-0 ehvuqT basket-text" style="display: none;">
                   <div class="sc-1acu81b-0 sc-8slcnd-0 esrGDY">
-                    <h4 class="sc-1acu81b-0 sc-14ntqp3-0 sc-14ntqp3-1 sc-14ntqp3-6 dqGsnD">Item(s) Added</h4><span
-                      tabindex="0" class="sc-1acu81b-0 sc-14ntqp3-0 sc-14ntqp3-9 iFfXkM btn-clear">Clear
-                      Items</span>
+                    <h4 class="sc-1acu81b-0 sc-14ntqp3-0 sc-14ntqp3-1 sc-14ntqp3-6 dqGsnD">Продукти додано</h4><span
+                      tabindex="0" class="sc-1acu81b-0 sc-14ntqp3-0 sc-14ntqp3-9 iFfXkM btn-clear">Очистити корзину</span>
                   </div>
                   <div id="added-products">
                   </div>
                   <hr class="nyyyo6-0 cnYwPc">
                   <div class="sc-1acu81b-0 gQLULL">
                     <div class="sc-1acu81b-0 sc-8slcnd-0 gl7882-1 gcvKCT">
-                      <p class="sc-1acu81b-0 sc-14ntqp3-0 sc-14ntqp3-7 gl7882-2 bFUzum">Subtotal</p>
-                      <p class="sc-1acu81b-0 sc-14ntqp3-0 sc-14ntqp3-7 gl7882-2 dQxHYP subtotal">S$10.90</p>
+                      <p class="sc-1acu81b-0 sc-14ntqp3-0 sc-14ntqp3-7 gl7882-2 bFUzum">Сума замовлення</p>
+                      <p class="sc-1acu81b-0 sc-14ntqp3-0 sc-14ntqp3-7 gl7882-2 dQxHYP subtotal">00.00&#8372;</p>
                     </div>
                     <div class="sc-1acu81b-0 sc-8slcnd-0 gl7882-1 gcvKCT">
-                      <p class="sc-1acu81b-0 sc-14ntqp3-0 sc-14ntqp3-7 gl7882-2 kPwmNQ">GST</p>
-                      <p class="sc-1acu81b-0 sc-14ntqp3-0 sc-14ntqp3-7 gl7882-2 VNKNm gst">S$0.87</p>
+                      <p class="sc-1acu81b-0 sc-14ntqp3-0 sc-14ntqp3-7 gl7882-2 kPwmNQ">Бонуси</p>
+                                        <p class="sc-1acu81b-0 sc-14ntqp3-0 sc-14ntqp3-7 gl7882-2 VNKNm gst">0.0&#8372;</p>
                     </div>
                   </div>
                 </div>
@@ -496,10 +536,10 @@
             <div class="sc-1acu81b-0 sc-8slcnd-0 hz6r0v-6 sc-1dohxd1-4 hBdgEC">
               <div width="100%" class="sc-1acu81b-0 sc-8slcnd-0 igCQuD">
                 <div width="100%" class="sc-1acu81b-0 sc-8slcnd-0 cnzPRb total-text" style="visibility: hidden;">
-                  <h4 class="sc-1acu81b-0 sc-14ntqp3-0 sc-14ntqp3-1 sc-14ntqp3-6 dqGsnD">Total</h4>
+                  <h4 class="sc-1acu81b-0 sc-14ntqp3-0 sc-14ntqp3-1 sc-14ntqp3-6 dqGsnD">До сплати</h4>
                   <h4 data-testid="cartDrawer.totalAmount"
-                    class="sc-1acu81b-0 sc-14ntqp3-0 sc-14ntqp3-1 sc-14ntqp3-6 dqGsnD total-price">S$00.00</h4>
-                </div><button id="slideButton" width="100%" class="sc-1ljqqky-0 lfiEcL qwkwaf-4 dNBZov" type="button">
+                    class="sc-1acu81b-0 sc-14ntqp3-0 sc-14ntqp3-1 sc-14ntqp3-6 dqGsnD total-price">00.00&#8372;</h4>
+                </div><button id="slideButton" width="100%" class="sc-1ljqqky-0 lfiEcL qwkwaf-4 dNBZov" style="background-color: lightgray" type="button" disabled>
                   <h4 id="selectBtnText">Оформити замовлення</h4>
                 </button>
               </div>
