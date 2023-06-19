@@ -324,7 +324,6 @@ function changeTotalPrice() {
 $('.input-order-type').change(function () {
     let price = $(".total-price").text().replace(/[^\d.]/g, "");
     let deliveryPrice = $(".delivery-price").text().replace(/[^\d.]/g, "");
-    alert(price + "  " + deliveryPrice)
     var selectedRadio = $('.input-order-type:checked').val();
     var input = $('#address');
 
@@ -362,52 +361,62 @@ $("#slideButton").click(function () {
     }
     else
     {
-    var products = document.getElementsByClassName('added-prod-name');
-    var productsNames = Array.from(products).map(function (label) {
-        return label.innerText;
-    });
-    // Получение всех элементов input с указанным атрибутом name
-    var inputElements = document.querySelectorAll('input[name="8a8191228819763c01881b6aba242e11"]');
+        var products = document.getElementsByClassName('added-prod-name');
+        var productsNames = Array.from(products).map(function (label) {
+            return label.innerText;
+        });
+        // Получение всех элементов input с указанным атрибутом name
+        var inputElements = document.querySelectorAll('input[name="8a8191228819763c01881b6aba242e11"]');
+        
+        // Создание пустого списка для сохранения значений
+        var valueList = [];
+        
+        // Перебор элементов для получения и сохранения значений
+        inputElements.forEach(function (element) {
+            var value = element.value;
+            valueList.push(value);
+        });
+        
+        var sum = document.querySelector('[data-testid="cartDrawer.totalAmount"]');
+        // Получение текста из элемента
+        var sum = sum.textContent.replace(/[^\d.]/g, '');
+        var bonuses = document.querySelector('.sc-1acu81b-0.sc-14ntqp3-0.sc-14ntqp3-7.gl7882-2.VNKNm.gst').textContent.replace(",", ".");
+        var startAddress = "ADDRESS";
+        var endAddress = document.querySelector('.userInput#address').value;
+        var xhr = new XMLHttpRequest();
 
-    // Создание пустого списка для сохранения значений
-    var valueList = [];
-
-    // Перебор элементов для получения и сохранения значений
-    inputElements.forEach(function (element) {
-        var value = element.value;
-        valueList.push(value);
-    });
-
-    var sum = document.querySelector('[data-testid="cartDrawer.totalAmount"]');
-    // Получение текста из элемента
-    var sum = sum.textContent.replace(/[^\d.]/g, '');
-    var xhr = new XMLHttpRequest();
-
-    // Установка метода и URL для отправки запроса
-    xhr.open("POST", "Order/Index", true);
-
-    // Установка заголовков
-    xhr.setRequestHeader("Content-Type", "application/json");
-    // Создание модели для списка строк
-    var model = {
-        productNames: productsNames,
-        sum: sum,
-        amount: valueList
-    };
-    // Отправка запроса
-    xhr.send(JSON.stringify(model));
-
-    // Обработка ответа
-    xhr.onload = function () {
-        if (xhr.status === 200) {
-            // Получение ответа от контроллера
-            var responseText = xhr.responseText;
-
-            // Вывод ответа в консоль
-            console.log(responseText);
-        } else {
-            console.log("Ошибка при отправке запроса: " + xhr.status);
+        // Установка метода и URL для отправки запроса
+        xhr.open("POST", "Order/Index", true);
+        
+        // Установка заголовков
+        xhr.setRequestHeader("Content-Type", "application/json");
+        // Создание модели для списка строк
+        var cart = {
+            productNames: productsNames,
+            amount: valueList
         }
-    };
+        var order = {
+            cart: cart,
+            sum: sum,
+            bonuses: bonuses,
+            startAddress: startAddress,
+            endAddress: endAddress
+        };
+        window.location.href = "/Order/Page";
+        // Отправка запроса
+        xhr.send(JSON.stringify(order));
+        
+        // Обработка ответа
+        xhr.onload = function () {
+            if (xhr.status === 200) {
+                // Получение ответа от контроллера
+                var responseText = xhr.responseText;
+        
+                // Вывод ответа в консоль
+                console.log(responseText);
+            } else {
+                console.log("Ошибка при отправке запроса: " + xhr.status);
+            }
+        };
     }
 });

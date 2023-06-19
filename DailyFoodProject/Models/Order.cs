@@ -4,9 +4,9 @@
     {
         public int? userId { get; set; }
         public double sum { get; set; }
-        public double bonuses = 0;
-        public string startAddress = string.Empty;
-        public string endAddress = string.Empty;
+        public double bonuses { get; set; }
+        public string startAddress { get; set; }
+        public string endAddress { get; set; }
         public Cart cart { get; set; }
     }
 }

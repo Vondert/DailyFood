@@ -49,13 +49,30 @@
             </a>
             <div class="dnNumD">
                         <div class="sc-1acu81b-0 sc-8slcnd-0 hfcCSo">
-                            <button class="sc-1ljqqky-0 likqgH sc-13chy03-4 cycFuL" width="auto" type="button">
-                                <h4 class="sc-1acu81b-0 sc-14ntqp3-0 sc-14ntqp3-1 sc-14ntqp3-6 sc-1ljqqky-1 cPHxZb">
-                                    <h4 class="sc-1acu81b-0 sc-14ntqp3-0 sc-14ntqp3-1 sc-14ntqp3-6 sc-13chy03-5 fPTkUX" id="btn-signIn">
-                                        Увійти
-                                    </h4>
-                                </h4>
-                            </button>
+                            @if (@Model.userId.HasValue)
+                            {
+                                <form asp-controller="Authorization" asp-action="Logout" method="get">
+                                    <button class="sc-1ljqqky-0 likqgH sc-13chy03-4 cycFuL" width="auto" type="submit">
+                                        <h4 class="sc-1acu81b-0 sc-14ntqp3-0 sc-14ntqp3-1 sc-14ntqp3-6 sc-1ljqqky-1 cPHxZb">
+                                            <h4 class="sc-1acu81b-0 sc-14ntqp3-0 sc-14ntqp3-1 sc-14ntqp3-6 sc-13chy03-5 fPTkUX" id="btn-signIn">
+                                                Вийти
+                                            </h4>
+                                        </h4>
+                                    </button>
+                                </form>
+                            }
+                            else
+                            {
+                                <form asp-controller="Authorization" asp-action="Index" method="get">
+                                    <button class="sc-1ljqqky-0 likqgH sc-13chy03-4 cycFuL" width="auto" type="submit">
+                                        <h4 class="sc-1acu81b-0 sc-14ntqp3-0 sc-14ntqp3-1 sc-14ntqp3-6 sc-1ljqqky-1 cPHxZb">
+                                            <h4 class="sc-1acu81b-0 sc-14ntqp3-0 sc-14ntqp3-1 sc-14ntqp3-6 sc-13chy03-5 fPTkUX" id="btn-signIn">
+                                                Увійти
+                                            </h4>
+                                        </h4>
+                                    </button>
+                                </form>
+                            }
                         </div>
               <div class="TTLcH openbasket">
                 <div class="bTClhV">
@@ -477,7 +494,7 @@
                                 </div>
                     <div class="form-group">
                         <label for="address">Адреса</label>
-                        <input class="userInput" type="text" id="address" placeholder="Введіть вашу адресу" readonly>
+                        <input class="userInput" type="text" id="address" placeholder="Введіть вашу адресу">
                     </div>
                                 <hr class="nyyyo6-0 cnYwPc">
 
