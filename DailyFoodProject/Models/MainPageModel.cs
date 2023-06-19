@@ -4,6 +4,5 @@
     {
         public List<Category> categories { get; set; }
         public int? userId;
-        public Order order { get; set; }
     }
 }

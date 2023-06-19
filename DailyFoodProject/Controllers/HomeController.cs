@@ -34,15 +34,8 @@ namespace DailyFoodProject.Controllers
             {
                 categories = categories,
                 userId = userId,
-                order = new Order(),
             };
-            mainPageModel.order.userId = mainPageModel.userId;
             return View(mainPageModel);
-        }
-
-        public IActionResult Privacy()
-        {
-            return View();
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
