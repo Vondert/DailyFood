@@ -1,60 +1,8 @@
 let prodCount = 0;
 let totalPrice = 0;
-let GST = 0;
+let bonuses = 0;
 let chooseMode = true;
 
-var butcnopkaton = document.getElementById('slideButton');
-
-// Добавляем обработчик события нажатия на кнопку
-butcnopkaton.addEventListener('click', function () {
-    var products = document.getElementsByClassName('added-prod-name');
-    var productsNames = Array.from(products).map(function (label) {
-        return label.innerText;
-    });
-    // Получение всех элементов input с указанным атрибутом name
-    var inputElements = document.querySelectorAll('input[name="8a8191228819763c01881b6aba242e11"]');
-
-    // Создание пустого списка для сохранения значений
-    var valueList = [];
-
-    // Перебор элементов для получения и сохранения значений
-    inputElements.forEach(function (element) {
-        var value = element.value;
-        valueList.push(value);
-    });
-
-    var sum = document.querySelector('[data-testid="cartDrawer.totalAmount"]');
-    // Получение текста из элемента
-    var sum = sum.textContent.replace(/[^\d.]/g, '');
-    var xhr = new XMLHttpRequest();
-
-    // Установка метода и URL для отправки запроса
-    xhr.open("POST", "Order/Index", true);
-
-    // Установка заголовков
-    xhr.setRequestHeader("Content-Type", "application/json");
-    // Создание модели для списка строк
-    var model = {
-        productNames: productsNames,
-        sum: sum,
-        amount: valueList
-    };
-    // Отправка запроса
-    xhr.send(JSON.stringify(model));
-
-    // Обработка ответа
-    xhr.onload = function () {
-        if (xhr.status === 200) {
-            // Получение ответа от контроллера
-            var responseText = xhr.responseText;
-
-            // Вывод ответа в консоль
-            console.log(responseText);
-        } else {
-            console.log("Ошибка при отправке запроса: " + xhr.status);
-        }
-    };
-});
 //show basket
 $(".bTClhV").on("click", () => {
   $(".dGkFMU").css("display", "block");
@@ -66,6 +14,10 @@ $(".fJwGNt").click(function () {
 });
 
 $(".add-btn").click(function () {
+
+    $("#slideButton").prop("disabled", false);
+    $("#slideButton").css("background-color", "#ffffff")
+
   if (!chooseMode) {
     return;
   }
@@ -85,16 +37,16 @@ $(".add-btn").click(function () {
     .trim();
 
   //calc price
-  let priceValue = parseFloat(prodPrice.replace(/[^\d.]/g, ""));
+    let priceValue = parseFloat(prodPrice.replace(/[^\d.]/g, ""));
   totalPrice += parseFloat(priceValue);
-  GST = (totalPrice * 0.1).toFixed(2);
+  bonuses = (totalPrice * 0.1).toFixed(2);
 
   //set total price
-  $(".subtotal").text("S$" + totalPrice.toFixed(2));
-  $(".gst").text("S$" + GST);
+    $(".subtotal").text(totalPrice.toFixed(2) + "₴");
+  $(".gst").text(bonuses);
 
-  let totalPriceWithGST = totalPrice + parseFloat(GST);
-  $(".total-price").text("S$" + totalPriceWithGST.toFixed(2));
+    let totalPriceWithGST = totalPrice;
+    $(".total-price").text(totalPriceWithGST.toFixed(2) + "₴");
 
   let prodName = $(this)
     .closest(".dvTutP")
@@ -140,7 +92,7 @@ $(".add-btn").click(function () {
         prodName.replace(/[^a-zA-Zа-яА-Я\s]/g, "").replace(/\s/g, "") +
         "-price"
     ).text(
-      "S$" + (parseFloat(prodPrice.replace(/[^\d.]/g, "")) * am).toFixed(2)
+        (parseFloat(prodPrice.replace(/[^\d.]/g, "")) * am).toFixed(2) + "₴"
     );
   } else {
     let imgUrl = $(this)
@@ -204,7 +156,7 @@ $(".add-btn").click(function () {
                   </g>
                 </svg></button>
             </div>
-            <p class="sc-1acu81b-0 sc-14ntqp3-0 sc-14ntqp3-7 jvhtXV added-prod-price">S$0.00</p>
+            <p class="sc-1acu81b-0 sc-14ntqp3-0 sc-14ntqp3-7 jvhtXV added-prod-price">0.00</p>
           </div>
         </div>
       </div>
@@ -215,8 +167,8 @@ $(".add-btn").click(function () {
     // Set values
     $("#added-products").append(newElement);
     newElement.find("img").attr("src", imgUrl);
-    newElement.find(".added-prod-name").text(prodName);
-    newElement.find(".added-prod-price").text(prodPrice);
+      newElement.find(".added-prod-name").text(prodName);
+      newElement.find(".added-prod-price").text(parseFloat(prodPrice).toFixed(2) + "₴");
 
     // Add id
     $(newElement)
@@ -278,7 +230,7 @@ $(document).on("click", ".btn-minus", function () {
         .replace(/[^\d.]/g, "")
     );
     let pr = totalProdPrice / amount;
-    $("#" + priceElem).text("S$" + (pr * (amount - 1)).toFixed(2));
+      $("#" + priceElem).text((pr * (amount - 1)).toFixed(2) + "₴");
   }
   changeTotalPrice();
 });
@@ -300,7 +252,7 @@ $(document).on("click", ".btn-plus", function () {
       .replace(/[^\d.]/g, "")
   );
   let pr = totalProdPrice / amount;
-  $("#" + priceElem).text("S$" + (pr * (amount + 1)).toFixed(2));
+    $("#" + priceElem).text((pr * (amount + 1)).toFixed(2) + "₴");
 
   changeTotalPrice();
 });
@@ -333,11 +285,13 @@ function clearBasket() {
   $(".basket-text").css("display", "none");
   $(".total-text").css("visibility", "hidden");
   $(".prodCount").css("display", "none");
+    $("#slideButton").prop("disabled", true);
+  $("#slideButton").css("background-color", "lightgrey");
 
   $("#added-products").empty();
 
   totalPrice = 0;
-  GST = 0;
+  bonuses = 0;
   totalPriceWithGST = 0;
   prodCount = 0;
 }
@@ -355,13 +309,105 @@ function changeTotalPrice() {
           .replace(/[^\d.]/g, "")
       );
       total += price;
-      GST = (total * 0.1).toFixed(2);
+      bonuses = (total * 0.1).toFixed(2);
 
       //set total price
-      $(".subtotal").text("S$" + total.toFixed(2));
-      $(".gst").text("S$" + GST);
+        $(".subtotal").text(total.toFixed(2) + "₴");
+      $(".gst").text(bonuses);
 
-      let totalPriceWithGST = total + parseFloat(GST);
-      $(".total-price").text("S$" + totalPriceWithGST.toFixed(2));
+        let totalPriceWithGST = total;
+        $(".total-price").text(totalPriceWithGST.toFixed(2) + "₴");
     });
 }
+
+// Change order type
+$('.input-order-type').change(function () {
+    let price = $(".total-price").text().replace(/[^\d.]/g, "");
+    let deliveryPrice = $(".delivery-price").text().replace(/[^\d.]/g, "");
+    alert(price + "  " + deliveryPrice)
+    var selectedRadio = $('.input-order-type:checked').val();
+    var input = $('#address');
+
+    if (selectedRadio === 'delivery') {
+        input.val('');
+        input.attr('placeholder', 'Введіть вашу адресу');
+        input.prop('readonly', false);
+        $(".delivery-price-block").css("display", "block");
+        //add delivery to total price
+        $(".total-price").text(parseFloat(parseFloat(price) + parseFloat(deliveryPrice)).toFixed(2) + "₴");
+    }
+    else if (selectedRadio === 'takeaway')
+    {
+        input.val('ADDRESS');
+        input.removeAttr('placeholder');
+        input.prop('readonly', true);
+        $(".delivery-price-block").css("display", "none");
+        $(".total-price").text(parseFloat(parseFloat(price) - parseFloat(deliveryPrice)).toFixed(2) + "₴");
+    }
+});
+
+//-----------------------create order-----------------------------
+$("#slideButton").click(function () {
+    $("#slideButton").css("background-color", "ffffff");
+
+    if (chooseMode && !$("#slideButton").prop("disabled"))
+    {
+        chooseMode = false;
+        $(".basket-text").css("display", "none");
+        $(".inputsBox").css("display", "block");
+
+        let price = $(".total-price").text().replace(/[^\d.]/g, "");
+        let deliveryPrice = $(".delivery-price").text().replace(/[^\d.]/g, "");
+        $(".total-price").text(parseFloat(parseFloat(price) + parseFloat(deliveryPrice)).toFixed(2) + "₴");
+    }
+    else
+    {
+    var products = document.getElementsByClassName('added-prod-name');
+    var productsNames = Array.from(products).map(function (label) {
+        return label.innerText;
+    });
+    // Получение всех элементов input с указанным атрибутом name
+    var inputElements = document.querySelectorAll('input[name="8a8191228819763c01881b6aba242e11"]');
+
+    // Создание пустого списка для сохранения значений
+    var valueList = [];
+
+    // Перебор элементов для получения и сохранения значений
+    inputElements.forEach(function (element) {
+        var value = element.value;
+        valueList.push(value);
+    });
+
+    var sum = document.querySelector('[data-testid="cartDrawer.totalAmount"]');
+    // Получение текста из элемента
+    var sum = sum.textContent.replace(/[^\d.]/g, '');
+    var xhr = new XMLHttpRequest();
+
+    // Установка метода и URL для отправки запроса
+    xhr.open("POST", "Order/Index", true);
+
+    // Установка заголовков
+    xhr.setRequestHeader("Content-Type", "application/json");
+    // Создание модели для списка строк
+    var model = {
+        productNames: productsNames,
+        sum: sum,
+        amount: valueList
+    };
+    // Отправка запроса
+    xhr.send(JSON.stringify(model));
+
+    // Обработка ответа
+    xhr.onload = function () {
+        if (xhr.status === 200) {
+            // Получение ответа от контроллера
+            var responseText = xhr.responseText;
+
+            // Вывод ответа в консоль
+            console.log(responseText);
+        } else {
+            console.log("Ошибка при отправке запроса: " + xhr.status);
+        }
+    };
+    }
+});
