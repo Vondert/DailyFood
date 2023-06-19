@@ -10,9 +10,13 @@ namespace DailyFoodProject.Controllers
         public IActionResult Index([FromBody] Order model)
         {
             model.userId = HttpContext.Session.GetInt32("UserId");
-            int orderId = Convert.ToInt32(DbRequests.Post("orders", $"{{\"UserId\":\"{model.userId}\",\"CourierId\":\"{null}\",\"startAddress\":\"\",\"endAddress\":\"{model.endAddress}\",\"startTime\":\"{DateTime.Now}\",\"endTime\":\"\",\"sum\":{model.sum},\"bonuses\":{model.bonuses}}}"));
+            int orderId = Convert.ToInt32(DbRequests.Post("orders", $"{{\"UserId\":{model.userId},\"CourierId\":null,\"startAddress\":\"{model.startAddress}\",\"endAddress\":\"{model.endAddress}\",\"startTime\":\"{DateTime.Now.ToString("yyyy-MM-ddTHH:mm:ss.fffZ")}\",\"sum\":{model.sum.ToString().Replace(',', '.')},\"bonusesAmount\":{model.bonuses.ToString().Replace(',', '.')}}}"));
             DbRequests.PostParts(model.cart.productNames, model.cart.amount, orderId);
             return Redirect("/");
+        }
+        public IActionResult Page()
+        {
+            return View();
         }
     }
 }

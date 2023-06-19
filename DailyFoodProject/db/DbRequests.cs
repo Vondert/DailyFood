@@ -79,7 +79,7 @@ namespace DailyFoodProject.db
                 var json = Newtonsoft.Json.JsonConvert.SerializeObject(data);
                 var content = new StringContent(json, Encoding.UTF8, "application/json");
 
-                var response = await httpClient.PostAsync(url, content);
+                var response = await httpClient.PostAsync(str, content);
 
                 if (response.IsSuccessStatusCode)
                 {
