@@ -3105,3 +3105,13 @@ footer p {
   margin-top: 4%;
   font-style: italic;
 }
+
+/*logo*/
+.logo-btn {
+    background-color: transparent;
+    border: none;
+    text-decoration: none;
+}
+.logo-btn:hover{
+    cursor: pointer;
+}

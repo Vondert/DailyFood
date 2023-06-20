@@ -27,9 +27,14 @@
                 <div class="lcNqgn">
                   <div class="cBjxhF">
                     <div class="hfcCSo">
-                      <img src="~/images/logo.png" class="cYSgHb" height="120px" width="auto">
-                      <h1 class="fxcbGf">Daily Food
-                      </h1>
+                    <img src="~/images/logo.png" class="cYSgHb" height="120px" width="auto">
+                    <form asp-controller="Home" asp-action="Index" method="post">
+                        <button type="submit" class="logo-btn">
+                            <h1 class="fxcbGf">
+                                Daily Food
+                            </h1>
+                        </button>
+                    </form>
                     </div>
                   </div>
                   <div class="bKQARb">
@@ -521,7 +526,7 @@
                     </div>
                     <div class="sc-1acu81b-0 sc-8slcnd-0 gl7882-1 gcvKCT">
                       <p class="sc-1acu81b-0 sc-14ntqp3-0 sc-14ntqp3-7 gl7882-2 kPwmNQ">Бонуси</p>
-                                        <p class="sc-1acu81b-0 sc-14ntqp3-0 sc-14ntqp3-7 gl7882-2 VNKNm gst">0.0&#8372;</p>
+                                        <p class="sc-1acu81b-0 sc-14ntqp3-0 sc-14ntqp3-7 gl7882-2 VNKNm bonuses">0.0&#8372;</p>
                     </div>
                   </div>
                 </div>
@@ -570,3 +575,7 @@
       <p>© 2023 ™ DailyFood. Всі права захищені.</p>
     </footer>
   </div>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+  <script src="~/js/script.js"></script>
+  <script src="~/js/basket_script.js"></script>
+
