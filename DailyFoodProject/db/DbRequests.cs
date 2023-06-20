@@ -5,7 +5,7 @@ namespace DailyFoodProject.db
 {
     public static class DbRequests
     {
-        public static string url = "http://20.4.141.232/";
+        public static string url = "http://20.4.124.65/";
         public static string Get(string str)
         {
             str = url + str;
