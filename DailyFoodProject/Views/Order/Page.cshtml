@@ -30,9 +30,13 @@
                                     <div class="hfcCSo">
                                         <img src="~/images/logo.png" class="cYSgHb" height="120px"
                                              width="auto">
-                                        <h1 class="fxcbGf logo-btn">
+                                             <form asp-controller="Home" asp-action="Index" method="post">
+                                            <button type="submit" class="logo-btn">
+                                        <h1 class="fxcbGf">
                                             Daily Food
                                         </h1>
+                                        </button>
+                                        </form>
                                     </div>
                                 </div>
                                 <div class="bKQARb">
@@ -63,7 +67,7 @@
                 </h1>
             </div>
             <div class="container">
-                <h2 id="order-number">Замовлення №@Model;</h2>
+                <h2 id="order-number">Замовлення прийнято.</h2>
                 <p>Дякуємо за ваше замовлення! Воно буде передано в обробку та виконано найближчим часом.</p>
                 <p>
                     Для того, щоб оплачувати замовлення онлайн, завантажуйте наш додаток за <a href="https://www.apple.com/ua/app-store/">посиланням</a>.

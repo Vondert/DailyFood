@@ -25,3 +25,8 @@
   font-weight: bold;
   color: #e62d61;
 }
+
+.logo-btn {
+	background-color: transparent;
+	border: none;
+}

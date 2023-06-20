@@ -2,15 +2,15 @@ let prodCount = 0;
 let totalPrice = 0;
 let bonuses = 0;
 let chooseMode = true;
-
+let locationAddress = "вул. Степана Бандери, 45";
 //show basket
 $(".bTClhV").on("click", () => {
-  $(".dGkFMU").css("display", "block");
+    $(".dGkFMU").css("display", "block");
 });
 
 //close basket
 $(".fJwGNt").click(function () {
-  $(".dGkFMU").css("display", "none");
+    $(".dGkFMU").css("display", "none");
 });
 
 $(".add-btn").click(function () {
@@ -18,91 +18,90 @@ $(".add-btn").click(function () {
     $("#slideButton").prop("disabled", false);
     $("#slideButton").css("background-color", "#ffffff")
 
-  if (!chooseMode) {
-    return;
-  }
+    if (!chooseMode) {
+        return;
+    }
 
-  prodCount++;
-  $(".prodCount").css("display", "flex");
-  $(".countNum").text(prodCount);
+    prodCount++;
+    $(".prodCount").css("display", "flex");
+    $(".countNum").text(prodCount);
 
-  $(".dOgGvv").css("display", "none");
-  $(".basket-text").css("display", "block");
-  $(".total-text").css("visibility", "visible");
+    $(".dOgGvv").css("display", "none");
+    $(".basket-text").css("display", "block");
+    $(".total-text").css("visibility", "visible");
 
-  let prodPrice = $(this)
-    .siblings(".prod-price-block")
-    .find(".prod-price")
-    .text()
-    .trim();
+    let prodPrice = $(this)
+        .siblings(".prod-price-block")
+        .find(".prod-price")
+        .text()
+        .trim();
 
-  //calc price
+    //calc price
     let priceValue = parseFloat(prodPrice.replace(/[^\d.]/g, ""));
-  totalPrice += parseFloat(priceValue);
-  bonuses = (totalPrice * 0.1).toFixed(2);
+    totalPrice += parseFloat(priceValue);
+    bonuses = (totalPrice * 0.1).toFixed(2);
 
-  //set total price
+    //set total price
     $(".subtotal").text(totalPrice.toFixed(2) + "₴");
-  $(".gst").text(bonuses);
+    $(".bonuses").text(bonuses);
 
-    let totalPriceWithGST = totalPrice;
-    $(".total-price").text(totalPriceWithGST.toFixed(2) + "₴");
+    $(".total-price").text(totalPrice.toFixed(2) + "₴");
 
-  let prodName = $(this)
-    .closest(".dvTutP")
-    .siblings(".prod-name-block")
-    .find(".prod-name")
-    .text()
-    .trim();
+    let prodName = $(this)
+        .closest(".dvTutP")
+        .siblings(".prod-name-block")
+        .find(".prod-name")
+        .text()
+        .trim();
 
-  // find same prod .added-products
-  let existingElement = $("#added-products p")
-    .filter(function () {
-      return $(this).text().trim() === prodName;
-    })
-    .closest(".fSQnxa");
+    // find same prod .added-products
+    let existingElement = $("#added-products p")
+        .filter(function () {
+            return $(this).text().trim() === prodName;
+        })
+        .closest(".fSQnxa");
 
-  // check res
-  if (existingElement.length > 0) {
-    $(existingElement)
-      .find(
-        "#" +
-          prodName.replace(/[^a-zA-Zа-яА-Я\s]/g, "").replace(/\s/g, "") +
-          "-input"
-      )
-      .val(
-        parseInt(
-          $(
+    // check res
+    if (existingElement.length > 0) {
+        $(existingElement)
+            .find(
+                "#" +
+                prodName.replace(/[^a-zA-Zа-яА-Я\s]/g, "").replace(/\s/g, "") +
+                "-input"
+            )
+            .val(
+                parseInt(
+                    $(
+                        "#" +
+                        prodName.replace(/[^a-zA-Zа-яА-Я\s]/g, "").replace(/\s/g, "") +
+                        "-input"
+                    ).val()
+                ) + 1
+            );
+
+        let am = parseInt(
+            $(
+                "#" +
+                prodName.replace(/[^a-zA-Zа-яА-Я\s]/g, "").replace(/\s/g, "") +
+                "-input"
+            ).val()
+        );
+        $(
             "#" +
-              prodName.replace(/[^a-zA-Zа-яА-Я\s]/g, "").replace(/\s/g, "") +
-              "-input"
-          ).val()
-        ) + 1
-      );
+            prodName.replace(/[^a-zA-Zа-яА-Я\s]/g, "").replace(/\s/g, "") +
+            "-price"
+        ).text(
+            (parseFloat(prodPrice.replace(/[^\d.]/g, "")) * am).toFixed(2) + "₴"
+        );
+    } else {
+        let imgUrl = $(this)
+            .closest(".kINELj")
+            .siblings(".djyJZQ")
+            .find(".prod-img")
+            .attr("src");
 
-    let am = parseInt(
-      $(
-        "#" +
-          prodName.replace(/[^a-zA-Zа-яА-Я\s]/g, "").replace(/\s/g, "") +
-          "-input"
-      ).val()
-    );
-    $(
-      "#" +
-        prodName.replace(/[^a-zA-Zа-яА-Я\s]/g, "").replace(/\s/g, "") +
-        "-price"
-    ).text(
-        (parseFloat(prodPrice.replace(/[^\d.]/g, "")) * am).toFixed(2) + "₴"
-    );
-  } else {
-    let imgUrl = $(this)
-      .closest(".kINELj")
-      .siblings(".djyJZQ")
-      .find(".prod-img")
-      .attr("src");
-
-    //Create product block
-    let newElement = $(`<div class="sc-1acu81b-0 fSQnxa">
+        //Create product block
+        let newElement = $(`<div class="sc-1acu81b-0 fSQnxa">
     <div class="sc-1acu81b-0 sc-8slcnd-0 z26spg-0 ceISiB">
       <div width="100%" class="sc-1acu81b-0 sc-8slcnd-0 horDHt">
         <div class="sc-1acu81b-0 sc-8slcnd-0 PXweM"><img
@@ -164,116 +163,116 @@ $(".add-btn").click(function () {
   </div>
 `);
 
-    // Set values
-    $("#added-products").append(newElement);
-    newElement.find("img").attr("src", imgUrl);
-      newElement.find(".added-prod-name").text(prodName);
-      newElement.find(".added-prod-price").text(parseFloat(prodPrice).toFixed(2) + "₴");
+        // Set values
+        $("#added-products").append(newElement);
+        newElement.find("img").attr("src", imgUrl);
+        newElement.find(".added-prod-name").text(prodName);
+        newElement.find(".added-prod-price").text(parseFloat(prodPrice).toFixed(2) + "₴");
 
-    // Add id
-    $(newElement)
-      .find(".btn-minus")
-      .attr(
-        "id",
-        prodName.replace(/[^a-zA-Zа-яА-Я\s]/g, "").replace(/\s/g, "") + "-minus"
-      );
-    $(newElement)
-      .find(".btn-plus")
-      .attr(
-        "id",
-        prodName.replace(/[^a-zA-Zа-яА-Я\s]/g, "").replace(/\s/g, "") + "-plus"
-      );
-    $(newElement)
-      .find("input")
-      .attr(
-        "id",
-        prodName.replace(/[^a-zA-Zа-яА-Я\s]/g, "").replace(/\s/g, "") + "-input"
-      );
-    $(newElement)
-      .find(".added-prod-price")
-      .attr(
-        "id",
-        prodName.replace(/[^a-zA-Zа-яА-Я\s]/g, "").replace(/\s/g, "") + "-price"
-      );
-    $(newElement)
-      .find(".btn-delete")
-      .attr(
-        "id",
-        prodName.replace(/[^a-zA-Zа-яА-Я\s]/g, "").replace(/\s/g, "") +
-          "-delete"
-      );
-  }
+        // Add id
+        $(newElement)
+            .find(".btn-minus")
+            .attr(
+                "id",
+                prodName.replace(/[^a-zA-Zа-яА-Я\s]/g, "").replace(/\s/g, "") + "-minus"
+            );
+        $(newElement)
+            .find(".btn-plus")
+            .attr(
+                "id",
+                prodName.replace(/[^a-zA-Zа-яА-Я\s]/g, "").replace(/\s/g, "") + "-plus"
+            );
+        $(newElement)
+            .find("input")
+            .attr(
+                "id",
+                prodName.replace(/[^a-zA-Zа-яА-Я\s]/g, "").replace(/\s/g, "") + "-input"
+            );
+        $(newElement)
+            .find(".added-prod-price")
+            .attr(
+                "id",
+                prodName.replace(/[^a-zA-Zа-яА-Я\s]/g, "").replace(/\s/g, "") + "-price"
+            );
+        $(newElement)
+            .find(".btn-delete")
+            .attr(
+                "id",
+                prodName.replace(/[^a-zA-Zа-яА-Я\s]/g, "").replace(/\s/g, "") +
+                "-delete"
+            );
+    }
 });
 
 // Minus click
 $(document).on("click", ".btn-minus", function () {
-  prodCount--;
-  $(".countNum").text(prodCount);
+    prodCount--;
+    $(".countNum").text(prodCount);
 
-  let input = $(this).attr("id").replace("minus", "input");
+    let input = $(this).attr("id").replace("minus", "input");
 
-  let amount = parseInt($("#" + input).val());
-  if (amount == 1) {
-    if ($("#added-products").children().length == 1) {
-      clearBasket();
+    let amount = parseInt($("#" + input).val());
+    if (amount == 1) {
+        if ($("#added-products").children().length == 1) {
+            clearBasket();
+        } else {
+            $("#added-products").find($(this).closest(".fSQnxa")).remove();
+        }
     } else {
-      $("#added-products").find($(this).closest(".fSQnxa")).remove();
+        $("#" + input).val(amount - 1);
+
+        let priceElem = $(this).attr("id").replace("minus", "price");
+
+        let totalProdPrice = parseFloat(
+            $("#" + priceElem)
+                .text()
+                .replace(/[^\d.]/g, "")
+        );
+        let pr = totalProdPrice / amount;
+        $("#" + priceElem).text((pr * (amount - 1)).toFixed(2) + "₴");
     }
-  } else {
-    $("#" + input).val(amount - 1);
-
-    let priceElem = $(this).attr("id").replace("minus", "price");
-
-    let totalProdPrice = parseFloat(
-      $("#" + priceElem)
-        .text()
-        .replace(/[^\d.]/g, "")
-    );
-    let pr = totalProdPrice / amount;
-      $("#" + priceElem).text((pr * (amount - 1)).toFixed(2) + "₴");
-  }
-  changeTotalPrice();
+    changeTotalPrice();
 });
 
 // Plus click
 $(document).on("click", ".btn-plus", function () {
-  prodCount++;
-  $(".countNum").text(prodCount);
-  let input = $(this).attr("id").replace("plus", "input");
+    prodCount++;
+    $(".countNum").text(prodCount);
+    let input = $(this).attr("id").replace("plus", "input");
 
-  let amount = parseInt($("#" + input).val());
-  $("#" + input).val(amount + 1);
+    let amount = parseInt($("#" + input).val());
+    $("#" + input).val(amount + 1);
 
-  let priceElem = $(this).attr("id").replace("plus", "price");
+    let priceElem = $(this).attr("id").replace("plus", "price");
 
-  let totalProdPrice = parseFloat(
-    $("#" + priceElem)
-      .text()
-      .replace(/[^\d.]/g, "")
-  );
-  let pr = totalProdPrice / amount;
+    let totalProdPrice = parseFloat(
+        $("#" + priceElem)
+            .text()
+            .replace(/[^\d.]/g, "")
+    );
+    let pr = totalProdPrice / amount;
     $("#" + priceElem).text((pr * (amount + 1)).toFixed(2) + "₴");
 
-  changeTotalPrice();
+    changeTotalPrice();
 });
 
 // Delete btn click
 $(document).on("click", ".btn-delete", function () {
-  if ($("#added-products").children().length == 1) {
-    clearBasket();
-  } else {
-    let inputId = $(this).attr("id").replace("delete", "input");
-    let amnt = parseInt(
-      $(document)
-        .find("#" + inputId)
-        .val()
-    );
+    if ($("#added-products").children().length == 1) {
+        clearBasket();
+    } else {
+        let inputId = $(this).attr("id").replace("delete", "input");
+        let amnt = parseInt(
+            $(document)
+                .find("#" + inputId)
+                .val()
+        );
 
-    prodCount -= amnt;
-    $(".countNum").text(prodCount);
-    $("#added-products").find($(this).closest(".fSQnxa")).remove();
-    changeTotalPrice();
-  }
+        prodCount -= amnt;
+        $(".countNum").text(prodCount);
+        $("#added-products").find($(this).closest(".fSQnxa")).remove();
+        changeTotalPrice();
+    }
 });
 
 // Clear btn click
@@ -281,43 +280,41 @@ $(".btn-clear").click(clearBasket);
 
 //Clear basket
 function clearBasket() {
-  $(".dOgGvv").css("display", "flex");
-  $(".basket-text").css("display", "none");
-  $(".total-text").css("visibility", "hidden");
-  $(".prodCount").css("display", "none");
+    $(".dOgGvv").css("display", "flex");
+    $(".basket-text").css("display", "none");
+    $(".total-text").css("visibility", "hidden");
+    $(".prodCount").css("display", "none");
     $("#slideButton").prop("disabled", true);
-  $("#slideButton").css("background-color", "lightgrey");
+    $("#slideButton").css("background-color", "lightgrey");
 
-  $("#added-products").empty();
+    $("#added-products").empty();
 
-  totalPrice = 0;
-  bonuses = 0;
-  totalPriceWithGST = 0;
-  prodCount = 0;
+    totalPrice = 0;
+    bonuses = 0;
+    prodCount = 0;
 }
 
 // Change total price
 function changeTotalPrice() {
-  let total = 0;
+    let total = 0;
 
-  $("#added-products")
-    .find(".added-prod-price")
-    .each(function () {
-      let price = parseFloat(
-        $(this)
-          .text()
-          .replace(/[^\d.]/g, "")
-      );
-      total += price;
-      bonuses = (total * 0.1).toFixed(2);
+    $("#added-products")
+        .find(".added-prod-price")
+        .each(function () {
+            let price = parseFloat(
+                $(this)
+                    .text()
+                    .replace(/[^\d.]/g, "")
+            );
+            total += price;
+            bonuses = (total * 0.1).toFixed(2);
 
-      //set total price
-        $(".subtotal").text(total.toFixed(2) + "₴");
-      $(".gst").text(bonuses);
+            //set total price
+            $(".subtotal").text(total.toFixed(2) + "₴");
+            $(".bonuses").text(bonuses);
 
-        let totalPriceWithGST = total;
-        $(".total-price").text(totalPriceWithGST.toFixed(2) + "₴");
-    });
+            $(".total-price").text(total.toFixed(2) + "₴");
+        });
 }
 
 // Change order type
@@ -337,7 +334,7 @@ $('.input-order-type').change(function () {
     }
     else if (selectedRadio === 'takeaway')
     {
-        input.val('ADDRESS');
+        input.val(locationAddress);
         input.removeAttr('placeholder');
         input.prop('readonly', true);
         $(".delivery-price-block").css("display", "none");
@@ -380,8 +377,8 @@ $("#slideButton").click(function () {
         var sum = document.querySelector('[data-testid="cartDrawer.totalAmount"]');
         // Получение текста из элемента
         var sum = sum.textContent.replace(/[^\d.]/g, '');
-        var bonuses = document.querySelector('.sc-1acu81b-0.sc-14ntqp3-0.sc-14ntqp3-7.gl7882-2.VNKNm.gst').textContent.replace(",", ".");
-        var startAddress = "ADDRESS";
+        var bonuses = document.querySelector('.sc-1acu81b-0.sc-14ntqp3-0.sc-14ntqp3-7.gl7882-2.VNKNm.bonuses').textContent.replace(",", ".");
+        var startAddress = locationAddress;
         var endAddress = document.querySelector('.userInput#address').value;
         var xhr = new XMLHttpRequest();
 

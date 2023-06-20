@@ -29,9 +29,13 @@
                                     <div class="hfcCSo">
                                         <img src="~/images/logo.png" class="cYSgHb" height="120px"
                                              width="auto">
-                                        <h1 class="fxcbGf">
-                                            Daily Food
-                                        </h1>
+                                        <form asp-controller="Home" asp-action="Index" method="post">
+                                            <button type="submit" class="logo-btn">
+                                                <h1 class="fxcbGf">
+                                                    Daily Food
+                                                </h1>
+                                            </button>
+                                        </form>
                                     </div>
                                 </div>
                                 <div class="bKQARb">
@@ -54,79 +58,6 @@
             </div>
         </div>
         <div>
-        </div>
-        <div>
-            <div>
-                <style>
-                    #annoucement-1 .container-background {
-                        background: #f2f2f2;
-                    }
-
-                    #annoucement-1 .header-color {
-                        color: #000000;
-                    }
-
-                    #annoucement-1 .sub-color {
-                        color: #000000;
-                    }
-
-                    #annoucement-1 .border-color {
-                        border-color: rgba(255, 255, 255, 0.5);
-                    }
-                </style>
-                <style>
-                    .container {
-                        width: 100%;
-                    }
-
-                    .wrapper {
-                        max-width: 1200px;
-                        margin: 0 auto;
-                        display: flex;
-                        display: -ms-flexbox;
-                        flex-direction: column;
-                    }
-
-                    .box {
-                        flex: 1 0 0%;
-                        -ms-flex: 1 0 0%;
-                        text-align: center;
-                        padding: 20px 0;
-                        margin: 0 20px;
-                    }
-
-                    .box:not(:last-child) {
-                        border: 0 solid transparent;
-                        border-bottom-width: 1px;
-                    }
-
-                    .header {
-                        font-size: 1rem;
-                        line-height: 1.2rem;
-                    }
-
-                    .sub {
-                        font-size: 1rem;
-                        margin: 0;
-                    }
-
-                    @@media (min-width: 1024px) {
-                        .wrapper {
-                            flex-direction: row;
-                        }
-
-                        .box {
-                            padding: 0 20px;
-                            margin: 20px 0;
-                        }
-
-                        .box:not(:last-child) {
-                            border-bottom-width: 0;
-                            border-right-width: 1px;
-                        }
-                    }
-                </style>
-            </div>
         </div>
         <div class="registration" style="height: 100%; padding: 8% 3%">
             <div class="sc-1acu81b-0 sc-8slcnd-0 cMUQOQ">

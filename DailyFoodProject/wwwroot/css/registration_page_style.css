@@ -517,7 +517,6 @@ a {
   width: 20px;
   height: 15px;
   box-shadow: rgb(136, 136, 136) 0px 0px 1px 0px;
-  background-image: url("https://genkisushi.oddle.me/__fesc/fe-core/static/images/flags.png");
   background-repeat: no-repeat;
   background-color: rgb(219, 219, 219);
   background-position: 20px 0px;
@@ -636,7 +635,7 @@ a {
   only screen and (min-resolution: 2dppx),
   only screen and (min-resolution: 192dpi) {
   .iti-flag {
-    background-image: url("https://genkisushi.oddle.me/__fesc/fe-core/static/images/flags@2x.png");
+    background-image: url("/images/flags@2x.png");
   }
 }
 .iurGlV {
@@ -989,5 +988,10 @@ a {
     color: red;
     font-size: 11pt;
     margin: 2%;
-    text-align: center;
+    text-align: left;
+}
+.reg-err-message{
+    display: block;
+    margin: -2% 0% 3% 0%;
+    text-align: left;
 }

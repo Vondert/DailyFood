@@ -1,8 +1,8 @@
 ﻿@model User
 @{
 }
-<link rel="stylesheet" type="text/css" href="~/css/registration_page_style.css">
 <link rel="stylesheet" type="text/css" href="~/css/main_page_style.css">
+<link rel="stylesheet" type="text/css" href="~/css/registration_page_style.css">
 
     <div class="byxnxM">
         <div class="hIrZrE">
@@ -27,8 +27,13 @@
                                         <div class="hfcCSo">
                                             <img src="~/images/logo.png" class="cYSgHb" height="120px"
                                                 width="auto">
-                                            <h1 class="fxcbGf">Daily Food
-                                            </h1>
+                                        <form asp-controller="Home" asp-action="Index" method="post" id="reg-form">
+                                            <button type="submit" class="logo-btn">
+                                                <h1 class="fxcbGf">
+                                                    Daily Food
+                                                </h1>
+                                            </button>
+                                        </form>                                           
                                         </div>
                                     </div>
                                     <div class="bKQARb">
@@ -51,79 +56,6 @@
                 </div>
             </div>
             <div>
-            </div>
-            <div>
-                <div>
-                    <style>
-                        #annoucement-1 .container-background {
-                            background: #f2f2f2;
-                        }
-
-                        #annoucement-1 .header-color {
-                            color: #000000;
-                        }
-
-                        #annoucement-1 .sub-color {
-                            color: #000000;
-                        }
-
-                        #annoucement-1 .border-color {
-                            border-color: rgba(255, 255, 255, 0.5);
-                        }
-                    </style>
-                    <style>
-                        .container {
-                            width: 100%;
-                        }
-
-                        .wrapper {
-                            max-width: 1200px;
-                            margin: 0 auto;
-                            display: flex;
-                            display: -ms-flexbox;
-                            flex-direction: column;
-                        }
-
-                        .box {
-                            flex: 1 0 0%;
-                            -ms-flex: 1 0 0%;
-                            text-align: center;
-                            padding: 20px 0;
-                            margin: 0 20px;
-                        }
-
-                        .box:not(:last-child) {
-                            border: 0 solid transparent;
-                            border-bottom-width: 1px;
-                        }
-
-                        .header {
-                            font-size: 1rem;
-                            line-height: 1.2rem;
-                        }
-
-                        .sub {
-                            font-size: 1rem;
-                            margin: 0;
-                        }
-
-                        @@media (min-width: 1024px) {
-                            .wrapper {
-                                flex-direction: row;
-                            }
-
-                            .box {
-                                padding: 0 20px;
-                                margin: 20px 0;
-                            }
-
-                            .box:not(:last-child) {
-                                border-bottom-width: 0;
-                                border-right-width: 1px;
-                            }
-                        }
-                    </style>
-                </div>
             </div>
             <div class="registration">
                 <div class="sc-1acu81b-0 sc-8slcnd-0 cMUQOQ">
@@ -188,7 +120,7 @@
                        телефону</label>
                </div>
            </div>
-           <span asp-validation-for="phoneNumber" class="error_message"></span>
+           <span asp-validation-for="phoneNumber" class="error_message reg-err-message reg-err-message-tel"></span>
            <div class="sc-1acu81b-0 p4bqbh-1 itozEE">
                <div class="sc-1acu81b-0 sc-8slcnd-0 sc-12uj57n-3 gLoLRE">
                    <div class="sc-1acu81b-0 sc-8slcnd-0 sc-12uj57n-4 jUcdXt">
@@ -199,7 +131,7 @@
                    </div>
                </div>
            </div>
-            <span asp-validation-for="login" class="error_message"></span>
+                        <span asp-validation-for="login" class="error_message reg-err-message reg-err-message-mail"></span>
            <div class="sc-1acu81b-0 p4bqbh-1 itozEE">
                <div class="sc-1acu81b-0 sc-8slcnd-0 sc-12uj57n-3 gLoLRE">
                    <div class="sc-1acu81b-0 sc-8slcnd-0 sc-12uj57n-4 jUcdXt">
@@ -219,25 +151,25 @@
                 </div>
             </div>
         </div>
-
+        <span id="reg-error-message" class="error_message reg-err-message"></span>
         <div class="sc-1acu81b-0 sc-8slcnd-0 sc-1qyon5p-0 gNCpiQ"><input
                 id="acceptMarketing" name="acceptMarketing" type="checkbox"
-                class="sc-1qyon5p-1 dpOeWx" checked="">
-            <div role="checkbox" class="sc-1acu81b-0 sc-8slcnd-0 sc-1qyon5p-2 ctdzsf"><svg
+                class="sc-1qyon5p-1 dpOeWx" checked required>
+            <div role="checkbox" class="sc-1acu81b-0 sc-8slcnd-0 sc-1qyon5p-2 ctdzsf tick-container"><svg
                     class="sc-1qyon5p-3 jiwYbE" width="16" height="16" viewBox="0 0 35 28">
                     <title>Tick</title>
-                    <g transform="translate(-2 -6)" fill="none" fill-rule="evenodd">
+                    <g transform="translate(-2 -6)" fill="none" fill-rule="evenodd" class="tick">
                         <rect width="39" height="39" rx="5"></rect>
                         <path
                             d="M36.192 6.808a2.758 2.758 0 0 0-3.9 0L12.49 26.609l-5.759-5.897a2.76 2.76 0 0 0-3.947 3.853l7.708 7.896c.515.527 1.22.826 1.958.832h.016a2.76 2.76 0 0 0 1.95-.809l21.775-21.776a2.758 2.758 0 0 0 0-3.9"
                             fill="#ffffff"></path>
-                    </g>
+                                    </g>
                 </svg></div>
             <p class="sc-1acu81b-0 sc-14ntqp3-0 sc-14ntqp3-7 jvhtXV">
                 Я даю згоду на збір та обробку моїх персональних даних.</p>
         </div>
         <div class="sc-1acu81b-0 sc-8slcnd-0 aheg1h-1 bhLcWC"><button type="submit"
-                class="sc-1ljqqky-0 ixpzHc aheg1h-0 hYVrEX" width="auto">
+                                    class="sc-1ljqqky-0 ixpzHc aheg1h-0 hYVrEX" id="btn-registrate" width="auto" disabled>
                 <h4
                     class="sc-1acu81b-0 sc-14ntqp3-0 sc-14ntqp3-1 sc-14ntqp3-6 sc-1ljqqky-1 cPHxZb">
                     Зареєструватися</h4>
@@ -253,3 +185,5 @@
     <p>© 2023 ™ DailyFood. Всі права захищені.</p>
 </footer>
     </div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+<script src="~/js/registration_script.js"></script>
