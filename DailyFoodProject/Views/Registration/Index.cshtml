@@ -1,4 +1,5 @@
-﻿@{
+﻿@model User
+@{
 }
 <link rel="stylesheet" type="text/css" href="~/css/registration_page_style.css">
 <link rel="stylesheet" type="text/css" href="~/css/main_page_style.css">
@@ -131,12 +132,12 @@
                 </div>
                 <div class="container">
 <div class="sc-1acu81b-0 sc-1pa0b2f-0 dEwaHC __card">
-    <form class="sc-16f0j0m-0 cOuEhu" method="post">
+        <form asp-controller="Registration" asp-action="Registrate" method="post">
            <div class="sc-1acu81b-0 p4bqbh-1 itozEE">
                <div class="sc-1acu81b-0 sc-8slcnd-0 sc-12uj57n-3 gLoLRE">
                    <div class="sc-1acu81b-0 sc-8slcnd-0 sc-12uj57n-4 jUcdXt">
-                       <input id="lastName" class="sc-12uj57n-0 gFHwXw" type="text"
-                           name="lastName" value=""><label for="lastName"
+                       <input asp-for="surname" id="lastName" required="" class="sc-12uj57n-0 gFHwXw" type="text"
+                           name="surname" value="@Model.surname"><label for="lastName"
                            class="sc-1acu81b-0 sc-14ntqp3-0 sc-14ntqp3-1 sc-14ntqp3-6 sc-12uj57n-1 jndxzP">Прізвище</label>
                    </div>
                </div>
@@ -144,8 +145,8 @@
            <div class="sc-1acu81b-0 p4bqbh-1 itozEE">
                <div class="sc-1acu81b-0 sc-8slcnd-0 sc-12uj57n-3 gLoLRE">
                    <div class="sc-1acu81b-0 sc-8slcnd-0 sc-12uj57n-4 jUcdXt">
-                       <input id="firstName" class="sc-12uj57n-0 gFHwXw" type="text"
-                           name="firstName" value=""><label for="firstName"
+                       <input asp-for="name" id="firstName" required="" class="sc-12uj57n-0 gFHwXw" type="text"
+                           name="name" value="@Model.name"><label for="firstName"
                            class="sc-1acu81b-0 sc-14ntqp3-0 sc-14ntqp3-1 sc-14ntqp3-6 sc-12uj57n-1 jndxzP">Ім'я</label>
                    </div>
                </div>
@@ -153,8 +154,8 @@
            <div class="sc-1acu81b-0 p4bqbh-1 itozEE">
                <div class="sc-1acu81b-0 sc-8slcnd-0 sc-12uj57n-3 gLoLRE">
                    <div class="sc-1acu81b-0 sc-8slcnd-0 sc-12uj57n-4 jUcdXt">
-                       <input id="birthDate" class="sc-12uj57n-0 gFHwXw" type="date"
-                           name="birthDate" value=""><label for="birthDate"
+                       <input asp-for="dob" id="birthDate" required="" class="sc-12uj57n-0 gFHwXw" type="date"
+                           name="dob" value="@Model.dob"><label for="birthDate"
                            class="sc-1acu81b-0 sc-14ntqp3-0 sc-14ntqp3-1 sc-14ntqp3-6 sc-12uj57n-1 jndxzP">Дата
                            народження</label>
                    </div>
@@ -179,28 +180,30 @@
                                        (Україна)</span><span class="dial-code">+ 380</span>
                                </li>
                            </ul>
-                       </div><input required="" pattern="^[+]?[0-9 -]+" type="tel"
-                           autocomplete="off" class="" name="phone" id="phone" placeholder=""
-                           value="">
+                       </div><input asp-for="phoneNumber" required pattern="[0-9]{10}" type="tel"
+                           autocomplete="off" class="" name="phoneNumber" id="phone" placeholder=""
+                           value="@Model.phoneNumber" maxlength="10" minlength="10">
                    </div><label for="phone"
                        class="sc-1acu81b-0 sc-14ntqp3-0 sc-14ntqp3-1 sc-14ntqp3-6 sc-12uj57n-1 sc-3oxrfd-1 jImnwe">Номер
                        телефону</label>
                </div>
            </div>
+           <span asp-validation-for="phoneNumber" class="error_message"></span>
            <div class="sc-1acu81b-0 p4bqbh-1 itozEE">
                <div class="sc-1acu81b-0 sc-8slcnd-0 sc-12uj57n-3 gLoLRE">
                    <div class="sc-1acu81b-0 sc-8slcnd-0 sc-12uj57n-4 jUcdXt">
-                       <input id="email" class="sc-12uj57n-0 gFHwXw" type="email" name="email"
-                           value=""><label for="email"
+                       <input asp-for="login" id="email" required="" class="sc-12uj57n-0 gFHwXw" type="text" name="login"
+                           value="@Model.login"><label for="email"
                            class="sc-1acu81b-0 sc-14ntqp3-0 sc-14ntqp3-1 sc-14ntqp3-6 sc-12uj57n-1 jndxzP">Логін
                            (ел. пошта)</label>
                    </div>
                </div>
            </div>
+            <span asp-validation-for="login" class="error_message"></span>
            <div class="sc-1acu81b-0 p4bqbh-1 itozEE">
                <div class="sc-1acu81b-0 sc-8slcnd-0 sc-12uj57n-3 gLoLRE">
                    <div class="sc-1acu81b-0 sc-8slcnd-0 sc-12uj57n-4 jUcdXt">
-                       <input id="password" class="sc-12uj57n-0 gFHwXw" type="password"
+                       <input asp-for="password" required="" id="password" class="sc-12uj57n-0 gFHwXw" type="password"
                            name="password" value=""><label for="password"
                            class="sc-1acu81b-0 sc-14ntqp3-0 sc-14ntqp3-1 sc-14ntqp3-6 sc-12uj57n-1 jndxzP">Пароль</label>
                    </div>
@@ -209,7 +212,7 @@
         <div class="sc-1acu81b-0 p4bqbh-1 itozEE">
             <div class="sc-1acu81b-0 sc-8slcnd-0 sc-12uj57n-3 gLoLRE">
                 <div class="sc-1acu81b-0 sc-8slcnd-0 sc-12uj57n-4 jUcdXt">
-                    <input id="passwordRepeat" class="sc-12uj57n-0 gFHwXw" type="password"
+                    <input id="passwordRepeat" required="" class="sc-12uj57n-0 gFHwXw" type="password"
                         name="passwordRepeat" value=""><label for="passwordRepeat"
                         class="sc-1acu81b-0 sc-14ntqp3-0 sc-14ntqp3-1 sc-14ntqp3-6 sc-12uj57n-1 jndxzP">Повторіть
                         пароль</label>
