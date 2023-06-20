@@ -10,7 +10,7 @@ button.on("click", () => {
   }
   block.css(
     "background-image",
-    `url("./images/banner_${currentIndex}.png")`
+    `url("~/images/banner_${currentIndex}.png")`
   );
   $("#dot_"+currentIndex).css("opacity", "1");
 });
@@ -24,7 +24,7 @@ buttonLeft.on("click", () => {
   }
   block.css(
     "background-image",
-    `url("./images/banner_${currentIndex}.png")`
+    `url("~/images/banner_${currentIndex}.png")`
   );
   $("#dot_"+currentIndex).css("opacity", "1");
 });
@@ -36,6 +36,6 @@ $(".ZyKEf").click(function()
   $("#dot_"+num).css("opacity", "1");
   block.css(
     "background-image",
-    `url("./images/banner_${num}.png")`);
+    `url("~/images/banner_${num}.png")`);
 });
 
