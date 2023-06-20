@@ -402,10 +402,8 @@ $("#slideButton").click(function () {
             startAddress: startAddress,
             endAddress: endAddress
         };
-        window.location.href = "/Order/Page";
         // Отправка запроса
         xhr.send(JSON.stringify(order));
-        
         // Обработка ответа
         xhr.onload = function () {
             if (xhr.status === 200) {
@@ -418,5 +416,6 @@ $("#slideButton").click(function () {
                 console.log("Ошибка при отправке запроса: " + xhr.status);
             }
         };
+        window.location.href = "/Order/Page";
     }
 });

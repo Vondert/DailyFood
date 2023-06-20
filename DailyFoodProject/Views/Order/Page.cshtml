@@ -1,10 +1,11 @@
 ﻿@*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
+@model int
 @{
 }
-<link rel="stylesheet" href="./assets/css/main_page_style.css">
-<link rel="stylesheet" href="./assets/css/order_page_style.css">
+<link rel="stylesheet" href="~/css/main_page_style.css">
+<link rel="stylesheet" href="~/css/order_page_style.css">
 
 <div class="byxnxM">
     <div class="hIrZrE">
@@ -27,28 +28,26 @@
                             <div class="lcNqgn">
                                 <div class="cBjxhF">
                                     <div class="hfcCSo">
-                                        <a href="~Views/Home/Index.cshtml">
-                                        <img src="./assets/images/logo.png" class="cYSgHb" height="120px"
+                                        <img src="~/images/logo.png" class="cYSgHb" height="120px"
                                              width="auto">
-                                        <h1 class="fxcbGf">
+                                        <h1 class="fxcbGf logo-btn">
                                             Daily Food
                                         </h1>
-                                        </a>
                                     </div>
                                 </div>
                                 <div class="bKQARb">
-                                    <img src="./assets/images/logo.png" class="cYSgHb" height="120px" width="auto">
+                                    <img src="~/images/logo.png" class="cYSgHb" height="120px" width="auto">
                                 </div>
                             </div>
                         </div>
                         <div class="hmFCJm">
                             <div class="cBjxhF">
                                 <div class="hfcCSo">
-                                    <img src="./assets/images/logo.png" class="cYSgHb" height="120px" width="auto">
+                                    <img src="~/images/logo.png" class="cYSgHb" height="120px" width="auto">
                                 </div>
                             </div>
                             <div class="bKQARb">
-                                <img src="./assets/images/logo.png" class="cYSgHb" height="120px" width="auto">
+                                <img src="~/images/logo.png" class="cYSgHb" height="120px" width="auto">
                             </div>
                         </div>
                     </a>
@@ -64,7 +63,7 @@
                 </h1>
             </div>
             <div class="container">
-                <h2 id="order-number">Замовлення №0000</h2>
+                <h2 id="order-number">Замовлення №@Model;</h2>
                 <p>Дякуємо за ваше замовлення! Воно буде передано в обробку та виконано найближчим часом.</p>
                 <p>
                     Для того, щоб оплачувати замовлення онлайн, завантажуйте наш додаток за <a href="https://www.apple.com/ua/app-store/">посиланням</a>.
@@ -73,8 +72,7 @@
         </div>
     </div>
     <footer>
-        <img src="./assets/images/logo.png">
+        <img src="~/images/logo.png">
         <p>© 2023 ™ DailyFood. Всі права захищені.</p>
     </footer>
 </div>
-
