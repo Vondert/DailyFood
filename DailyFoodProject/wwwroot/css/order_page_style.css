@@ -1,0 +1,27 @@
+.order {
+  height: 550px;
+  background: white;
+  background-image: radial-gradient(rgb(182, 181, 181) 1px, transparent 0);
+  background-size: 40px 40px;
+  padding: 5%;
+}
+
+.order h1 {
+  color: #e62d61;
+  font-size: 26pt;
+  margin-bottom: 4%;
+  text-align: center;
+}
+
+.order h2 {
+  font-size: 18pt;
+}
+
+.order p {
+  font-size: 14pt;
+}
+
+.order a {
+  font-weight: bold;
+  color: #e62d61;
+}
